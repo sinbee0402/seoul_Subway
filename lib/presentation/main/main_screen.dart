@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seoul_subway/components/subway_item.dart';
+import 'package:seoul_subway/presentation/components/subway_item.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -52,13 +52,15 @@ class _MainScreenState extends State<MainScreen> {
                           borderSide: BorderSide(color: Colors.grey),
                         ),
                       ),
-                      //onSubmitted: ,
+                      // TODO : 추후 수정
+                      onSubmitted: print,
                     ),
                   ),
                   const SizedBox(width: 24),
                   TextButton(
                     onPressed: () {
-                      //onSubmitted과 같은 코드 사용
+                      //TODO : onSubmitted과 같은 코드 사용
+                      print(textController.text);
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.grey,
@@ -91,7 +93,7 @@ class _MainScreenState extends State<MainScreen> {
                     crossAxisSpacing: 5,
                   ),
                   itemBuilder: (context, index) {
-                    return SubwayItem();
+                    return const SubwayItem();
                   },
                 ),
               ),
