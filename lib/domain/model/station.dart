@@ -10,4 +10,17 @@ class Station {
     required this.barvlDt,
     required this.arvlMsg3,
   });
+
+  Station.fromJson(Map<String, dynamic> json)
+      : trainLineNm = json['trainLineNm'],
+        statnNm = json['statnNm'],
+        barvlDt = json['barvlDt'],
+        arvlMsg3 = json['arvlMsg3'];
+
+  Map<String, dynamic> toJson() => {
+        'trainLineNm': trainLineNm,
+        'statnNm': statnNm,
+        'barvlDt': barvlDt,
+        'arvlMsg3': arvlMsg3,
+      };
 }
