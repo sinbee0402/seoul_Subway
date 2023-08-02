@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:seoul_subway/domain/model/station.dart';
 
 class SubwayItem extends StatelessWidget {
-  const SubwayItem({Key? key}) : super(key: key);
+  final Station station;
+
+  const SubwayItem({
+    Key? key,
+    required this.station,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +34,13 @@ class SubwayItem extends StatelessWidget {
             height: 100,
           ),
           const SizedBox(height: 12),
-          const Text(
-            '~~행 - ~~방면',
-            style: TextStyle(fontWeight: FontWeight.bold),
+          Text(
+            station.trainLineNm,
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
-          const Text(
-            'n분 후 (역 이름)',
-            style: TextStyle(fontWeight: FontWeight.bold),
+          Text(
+            '${num.parse(station.barvlDt) / 60}분 후 (${station.arvlMsg3})',
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
         ],
       ),

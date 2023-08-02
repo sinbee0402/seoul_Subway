@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:seoul_subway/presentation/components/subway_item.dart';
+import 'package:seoul_subway/presentation/main/main_view_model.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -19,6 +21,8 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<MainViewModel>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('지하철 실시간 정보'),
@@ -52,14 +56,13 @@ class _MainScreenState extends State<MainScreen> {
                           borderSide: BorderSide(color: Colors.grey),
                         ),
                       ),
-                      // TODO : 추후 수정
-                      onSubmitted: print,
+                      onSubmitted: viewModel.fetch,
                     ),
                   ),
                   const SizedBox(width: 24),
                   TextButton(
-                    onPressed: () {
-                      //TODO : onSubmitted과 같은 코드 사용
+                    onPressed: () async {
+                      viewModel.fetch(textController.text);
                       print(textController.text);
                     },
                     style: TextButton.styleFrom(
@@ -86,14 +89,15 @@ class _MainScreenState extends State<MainScreen> {
               ),
               Expanded(
                 child: GridView.builder(
-                  itemCount: 4,
+                  itemCount: viewModel.stations.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     mainAxisSpacing: 5,
                     crossAxisSpacing: 5,
                   ),
                   itemBuilder: (context, index) {
-                    return const SubwayItem();
+                    final station = viewModel.stations[index];
+                    return SubwayItem(station: station);
                   },
                 ),
               ),
