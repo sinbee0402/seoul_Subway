@@ -39,7 +39,7 @@ class SubwayItem extends StatelessWidget {
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           Text(
-            '${num.parse(station.barvlDt) / 60}분 후 (${station.arvlMsg3})',
+            '${int.parse(station.barvlDt) ~/ 60}분 후 (${station.arvlMsg3})',
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
         ],
